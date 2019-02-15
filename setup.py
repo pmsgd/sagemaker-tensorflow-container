@@ -5,9 +5,13 @@ from os.path import splitext
 
 from setuptools import setup, find_packages
 
+PY3 = sys.version_info[0] == 3
 
 def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    if PY3:
+        return open(os.path.join(os.path.dirname(__file__), fname), encoding="utf-8").read()
+    else:
+        return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
 setup(
